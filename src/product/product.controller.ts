@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { CreateProductDTO } from './dto/product.dto';
 import { ProductService } from './product.service';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('product')
 export class ProductController {
@@ -37,6 +38,7 @@ export class ProductController {
   }
 
   @Post('/create')
+  @ApiOperation({ description: 'This endpoint create a product' })
   async createProduct(@Res() res, @Body() createProductDTO: CreateProductDTO) {
     const product = await this.productService.createProcut(createProductDTO);
     res.status(HttpStatus.OK).json({
