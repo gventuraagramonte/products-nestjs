@@ -2,7 +2,7 @@
 
 This app is a example of Nest and Swagger
 
-![Capture this is api with Swagger]('./.readme-static/Preview-api-rest.PNG')
+![Capture this is api with Swagger](./.readme-static/PreviewAPI.PNG)
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
