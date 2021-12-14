@@ -6,5 +6,5 @@ export interface Product extends Document {
   readonly imageURL: string;
   readonly price: number;
   readonly createdAt: Date;
-  readonly dateDomain: Date;
+  readonly dateDomain: String;
 }
