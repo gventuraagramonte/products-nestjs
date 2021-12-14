@@ -9,8 +9,5 @@ export const ProductSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  dateDomain: {
-    type: String,
-    required: true,
-  },
+  dateDomain: String,
 });
