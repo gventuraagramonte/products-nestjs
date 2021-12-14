@@ -5,6 +5,6 @@ export interface Product extends Document {
   readonly description: string;
   readonly imageURL: string;
   readonly price: number;
-  readonly createdAt: Date;
   readonly dateDomain: String;
+  readonly createdAt: Date;
 }
