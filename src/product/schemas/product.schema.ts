@@ -10,6 +10,7 @@ export const ProductSchema = new Schema({
     default: Date.now,
   },
   dateDomain: {
-    type: Date,
+    type: String,
+    required: true,
   },
 });
