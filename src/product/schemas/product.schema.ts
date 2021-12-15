@@ -6,6 +6,7 @@ export const ProductSchema = new Schema({
   imageURL: String,
   price: Number,
   dateDomain: String,
+  daysExp: String,
   createdAt: {
     type: Date,
     default: Date.now,

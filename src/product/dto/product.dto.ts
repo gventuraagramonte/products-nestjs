@@ -17,5 +17,8 @@ export class CreateProductDTO {
   readonly dateDomain: String;
 
   @ApiProperty()
+  daysExp: String;
+
+  @ApiProperty()
   readonly createdAt: Date;
 }
