@@ -7,6 +7,7 @@ import { CreateProductDTO } from './dto/product.dto';
 const sslCertificate = require('get-ssl-certificate');
 const request = require('request');
 const assert = require('assert');
+const axios = require('axios');
 @Injectable()
 export class ProductService {
   constructor(
@@ -54,65 +55,35 @@ export class ProductService {
           }
           let daysCert = daysDiff(today, certValidToDate);
           // Aqui entra la función de enviar datos a New Relic
-          function enviarDatosANewRelic(
-            urlDomain,
-            description,
-            imageURL,
-            dateDomain,
-            issuer,
-            daysToExpiration,
-            expirationMilliseconds,
-          ) {
-            let licenseKey = 'NRII-mV9ulOajHyJQ281lMDMicXmG4vdfFpA3';
-            let accountId = '2662887';
-            console.log('Enviando información a New Relic');
-            let options = {
-              uri:
-                'https://insights-collector.newrelic.com/v1/accounts/' +
-                accountId +
-                '/events',
-              body:
-                '[{"eventType":"DomainCertificate","Url":"' +
-                urlDomain +
-                '","Issuer":"' +
-                issuer +
-                '","Application":' +
-                description +
-                '","Area":' +
-                imageURL +
-                '","DaysToExpirationDomain":' +
-                dateDomain +
-                '","DaysToExpiration":' +
-                daysToExpiration +
-                ', "ExpirationDate":' +
-                expirationMilliseconds +
-                '}]',
+
+          function ejecutarAxios(b, c, d, e, f, g, h) {
+            axios({
+              method: 'post',
+              url:
+                'https://insights-collector.newrelic.com/v1/accounts/2662887/events',
               headers: {
-                'X-Insert-Key': licenseKey,
                 'Content-Type': 'application/json',
+                'X-Insert-Key': 'NRII-mV9ulOajHyJQ281lMDMicXmG4vdfFpA3',
               },
-            };
-            request.post(options, function(error, response, body) {
-              console.log(response);
-              console.log(response.statusMessage);
-              console.log(response.statusCode + ' status code');
-              assert.ok(response.statusCode == 200, 'Expected 200 OK response');
-              var info = JSON.parse(body);
-              assert.ok(
-                info.success == true,
-                'Expected True results in Response Body, result was ' +
-                  info.success,
-              );
-              console.log('SSL cert check completed successfully');
+              data: {
+                eventType: 'DomainCertificate',
+                Url: b,
+                Issuer: c,
+                Aplication: d,
+                Area: e,
+                DaysToExpirationDomain: f,
+                DaysToExpiration: g,
+                ExpirationDate: h,
+              },
             });
           }
 
-          enviarDatosANewRelic(
+          ejecutarAxios(
             url,
+            datoIssuer,
             application,
             area,
-            data,
-            datoIssuer,
+            dd,
             daysCert,
             certValidToDate,
           );
