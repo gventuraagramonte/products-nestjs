@@ -63,7 +63,7 @@ export class ProductService {
                 'https://insights-collector.newrelic.com/v1/accounts/2662887/events',
               headers: {
                 'Content-Type': 'application/json',
-                'X-Insert-Key': 'NRII-mV9ulOajHyJQ281lMDMicXmG4vdfFpA3',
+                'X-Insert-Key': process.env.LICENCE_KEY,
               },
               data: {
                 eventType: 'DomainCertificate',

@@ -7,13 +7,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ProductModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://armitage_user:G1V3NTUR4@armitage.m2xao.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
-    ),
+    MongooseModule.forRoot(process.env.URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
